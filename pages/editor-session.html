@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Strip Editor</title>
+  <link rel="stylesheet" href="../styles/sessed.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Font Awesome (jika diperlukan) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <!-- Panel Kiri: Kontrol Editor -->
+  <div class="editor-container">
+    <h1>Photo Strip Editor</h1>
+    <div class="editor-actions">
+      <button id="retakeBtn" class="btn ghost">Retake</button>
+      <button id="saveBtn" class="btn primary">Save Image</button>
+    </div>
+    <!-- Opsi Layout -->
+    <div class="editor-section">
+      <h2>Layout</h2>
+      <div class="layout-options">
+        <label>
+          <input type="radio" name="layoutType" value="photobooth" checked />
+          Photobooth
+        </label>
+        <label>
+          <input type="radio" name="layoutType" value="filmstrip" />
+          Film Strip
+        </label>
+      </div>
+    </div>
+    <!-- Pilihan Warna Frame -->
+    <div class="editor-section">
+      <h2>Polaroid Frame</h2>
+      <label for="frameColor">Frame Color</label>
+      <input type="color" id="frameColor" value="#ffffff" />
+    </div>
+    <!-- Watermark & Caption -->
+    <div class="editor-section">
+      <h2>Watermark</h2>
+      <label>
+        <input type="checkbox" id="removeWatermark" />
+        Remove Watermark
+      </label>
+      <div class="watermark-inputs">
+        <label for="captionText">Caption</label>
+        <input type="text" id="captionText" placeholder="Enter caption..." />
+        <label for="captionColor">Caption Color</label>
+        <input type="color" id="captionColor" value="#000000" />
+      </div>
+    </div>
+    <!-- Show Date/Time -->
+    <div class="editor-section">
+      <h2>Date/Time</h2>
+      <label>
+        <input type="checkbox" id="showDate" />
+        Show Date/Time
+      </label>
+    </div>
+  </div>
+
+  <!-- Panel Kanan: Preview -->
+  <div class="preview-container">
+    <div id="photoPreview" class="photo-preview">
+      <!-- Preview akan dirender oleh JS -->
+    </div>
+  </div>
+
+  <script src="../scripts/extended.js"></script>
+</body>
+</html>

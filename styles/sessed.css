@@ -1,0 +1,181 @@
+/* editor.css */
+
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  /* Panel Kiri: Editor Controls */
+  .editor-container {
+    width: 300px;
+    background: #111;
+    padding: 20px;
+    border-right: 1px solid #444;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .editor-container h1 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+  
+  .editor-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn.ghost {
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+  }
+  
+  .btn.primary {
+    background: #e91e63;
+    color: #fff;
+  }
+  
+  .editor-section h2 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  
+  .layout-options label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Watermark inputs */
+  .watermark-inputs {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  #captionText {
+    padding: 6px;
+    color: #000;
+  }
+  
+  /* Panel Kanan: Preview */
+  .preview-container {
+    flex: 1;
+    background: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Polaroid styling: Lebar tetap 240px dan space bawah untuk watermark/date */
+  .polaroid {
+    width: 240px;
+    background: #ffffff00;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    position: relative;
+    padding: 10px 10px;
+    text-align: center;
+    overflow: hidden; /* Pastikan elemen anak tidak keluar dari radius */
+    background-clip: border-box; /* Membantu html2canvas mengenali border-radius */
+  }
+  
+  /* Untuk filmstrip: gambar-gambar ditumpuk secara vertikal */
+  .filmstrip-photos {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .polaroid img {
+    width: 100%;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Watermark & Date/Time */
+  .watermark {
+    display: block;
+    font-size: 0.9rem;
+    color: #000;
+    margin-top: 10px; /* jarak ke bawah foto */
+  }
+  .date-info {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 5px; /* jarak ke bawah watermark */
+  }
+  
+  /* Untuk photobooth, setiap polaroid sudah menggunakan .polaroid,
+     jadi tidak ada style khusus tambahan */
+  
+  /* TABLET & MOBILE (<= 768px): Tumpuk Editor di atas, Preview di bawah */
+@media (max-width: 768px) {
+    body {
+      flex-direction: column; /* Editor di atas, preview di bawah */
+    }
+  
+    .editor-container {
+      width: 100%;           /* Penuh di layar */
+      border-right: none;    /* Hilangkan garis kanan */
+      border-bottom: 1px solid #444;
+    }
+  
+    .preview-container {
+      width: 100%;
+      padding: 15px;
+    }
+  
+    .polaroid {
+      margin: 10px auto;     /* Biar di tengah */
+    }
+  }
+  
+  /* MOBILE (<= 480px): Lebih kecil lagi */
+  @media (max-width: 480px) {
+
+    body{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .editor-container {
+      padding: 15px;
+      gap: 15px;
+    }
+  
+    .editor-container h1 {
+      text-align: center;
+      font-size: 1.2rem;
+    }
+  
+    .btn {
+      width: 100%;
+      font-size: 0.85rem;
+      padding: 10px;
+    }
+  
+    .polaroid {
+      width: 90%;          /* Sesuaikan agar tidak terlalu besar di ponsel */
+      max-width: 240px;
+    }
+  }
