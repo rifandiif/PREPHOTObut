@@ -1,6 +1,12 @@
 # PREPHOTO-X - Beta Version
 
+Website Preview : www.prephoto-beta.netlify.app
 
+Website Screenshots:
+
+<img width="960" alt="image" src="https://github.com/user-attachments/assets/4fab32f6-ed3d-45e0-ac11-cee00a656c46" />
+<img width="960" alt="image" src="https://github.com/user-attachments/assets/113c8562-04c1-4502-aa37-573b73a2a40c" />
+<img width="960" alt="image" src="https://github.com/user-attachments/assets/bed74642-0f22-4520-93bc-2d0e82185287" />
 
 ## 🚀 Fitur Utama
 
