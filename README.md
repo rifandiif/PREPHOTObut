@@ -1,6 +1,6 @@
 # PREPHOTO-X - Beta Version
 
-Website Preview : www.prephoto-beta.netlify.app
+Website Preview : https://www.prephoto-beta.netlify.app
 
 Website Screenshots:
 
