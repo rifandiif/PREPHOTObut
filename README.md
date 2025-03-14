@@ -45,5 +45,5 @@ Jika ingin berkontribusi, silakan buat **Pull Request** atau ajukan **Issue** di
 
 ---
 
-📌 PREPHOTO-X - Dibuat dengan ❤️ oleh Himawan Bagus Suwanto
+📌 PREPHOTO-X - Dibuat dengan ❤️ oleh Himawan Bagus Suwanto -FEE
 
