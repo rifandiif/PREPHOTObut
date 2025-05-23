@@ -122,5 +122,25 @@
   </div>
 
     <script src="/scripts/main.js"></script>
+<script>
+  // Ambil template yang dipilih dari localStorage
+  const selectedTemplate = localStorage.getItem('selectedTemplate');
+  
+  // Inisialisasi jumlah foto maksimum berdasarkan template yang dipilih
+  let maxPhotos = 3; // Default value
+  if (selectedTemplate === '1x3') {
+    maxPhotos = 3;
+  } else if (selectedTemplate === '3x1') {
+    maxPhotos = 3;
+  } else if (selectedTemplate === '4x1') {
+    maxPhotos = 4;
+  } else if (selectedTemplate === '1x4') {
+    maxPhotos = 4;
+  } else if (selectedTemplate === '4x2') {
+    maxPhotos = 8;
+  }
+  // Pastikan untuk menggunakan maxPhotos di bagian lain dari script Anda
+  console.log("Max photos allowed: ", maxPhotos);
+</script>
 </body>
 </html>
