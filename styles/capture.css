@@ -113,6 +113,7 @@
   /* Bottom Bar */
   .bottom-bar {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
     padding: 10px 20px;
@@ -144,12 +145,20 @@
   
   .icon-bar {
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+justify-content: center;
+  /*width: 100%;*/
+  max-width: 400px; /* Batas maksimum lebar ikon */
+  /*margin-top: 10px;*/
   }
   
   .icon {
     width: 40px;
     height: 40px;
+       flex: 0 0 20%;
+       max-width: 20%;
     border-radius: 50%;
     background: #f0f0f0;
     border: 1px solid #ddd;
@@ -254,6 +263,11 @@
       justify-content: center;
       gap: 10px;
     }
+.icon-bar .icon {
+    flex: 0 0 25%; /* 4 per baris */
+    max-width: 25%;
+  }
+}
   }
   
   /* <= 480px: Lebih kecil lagi */
@@ -267,7 +281,10 @@
     .camera-selector-container {
       display: none; /* Hilangkan dropdown kamera */
     }
-  
+  .icon-bar .icon {
+    flex: 0 0 33.33%; /* 3 per baris */
+    max-width: 33.33%;
+  }
     /* Biar preview horizontal & scroll */
     .preview-images {
       flex-direction: row !important;
