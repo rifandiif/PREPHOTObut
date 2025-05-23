@@ -72,7 +72,7 @@ aspect-ratio: 4 / 3; /* atau 16 / 9 */
   .camera-view video {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Agar video tidak terpotong */
+    object-fit: cover; /* Agar video tidak terpotong */
     border-radius: 20px; /* Sudut membulat pada live webcam */
   }
   
@@ -263,7 +263,6 @@ transform-origin: center center;
     height: auto;
   }
 
-  
     .bottom-bar {
       flex-wrap: wrap;
       justify-content: center;
