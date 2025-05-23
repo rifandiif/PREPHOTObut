@@ -22,25 +22,7 @@
       <span class="arrow-down">▼</span>
     </div>
   </div>
-<script>
-    const template = localStorage.getItem("selectedTemplate") || "1x3";
-    const [cols, rows] = template.split("x").map(Number);
-    const totalPhotos = cols * rows;
 
-    const photoGrid = document.getElementById("photo-grid");
-    photoGrid.style.gridTemplateColumns = `repeat(${cols}, 100px)`;
-    photoGrid.style.gridTemplateRows = `repeat(${rows}, 130px)`;
-
-    let currentPhoto = 0;
-    const capturedImages = [];
-
-    for (let i = 0; i < totalPhotos; i++) {
-      const div = document.createElement("div");
-      div.className = "photo-slot";
-      div.innerText = `Foto ${i + 1}`;
-      photoGrid.appendChild(div);
-    }
-</script>
   <!-- Main Container -->
   <div class="main-container">
     <!-- Kolom Kiri: Live Kamera -->
