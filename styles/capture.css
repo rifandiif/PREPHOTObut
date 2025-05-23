@@ -249,18 +249,20 @@ aspect-ratio: 4 / 3; /* atau 16 / 9 */
     .preview-images img {
       width: 120px; /* perkecil thumbnail di mobile */
     }
-.camera-view video {
-    aspect-ratio: 4 / 3; /* Landscape */
-transform-origin: center center;
-    width: auto;
-    height: 100vw; /* Gunakan tinggi layar sebagai lebar video */
-    object-fit: cover;
+.camera-view {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 4 / 3;
+    background: #000;
+    margin: 0 auto;
+    border-radius: 20px;
   }
-  .camera-view {
-    aspect-ratio: 4 / 3; /* Landscape */
-    overflow: hidden;
- width: 100vw;
-    height: auto;
+
+  .camera-view video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 20px;
   }
 
     .bottom-bar {
