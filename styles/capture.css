@@ -249,11 +249,17 @@ aspect-ratio: 4 / 3; /* atau 16 / 9 */
     .preview-images img {
       width: 120px; /* perkecil thumbnail di mobile */
     }
-    .camera-view {
-      width: 80%;
-      height: 240px; /* beri tinggi fix agar tidak terlalu kecil di hp */
-      margin: 0 auto;
-    }
+    .camera-view video {
+    transform: rotate(-90deg);
+    transform-origin: center center;
+    width: auto;
+    height: 100%;
+  }
+
+  .camera-view {
+    aspect-ratio: 4 / 3; /* Landscape */
+    overflow: hidden;
+  }
     .bottom-bar {
       flex-wrap: wrap;
       justify-content: center;
