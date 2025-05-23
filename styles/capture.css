@@ -57,11 +57,6 @@
   }
   
   .camera-view {
-    width: 80%;
-  height: 320px; /* sebelumnya 240px, sekarang lebih tinggi */
-  margin: 0 auto;
-  }
- /* .camera-view {
     width: 57%;
     height: 78.5%;
     background: #000;
@@ -69,15 +64,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; 
+    overflow: hidden; /* Agar border-radius video terlihat */
     border-radius: 20px;
-  } */
+  }
   
   .camera-view video {
-   /* width: 100%;*/
-   /* height: 100%;*/
-    object-fit: cover; /* Agar video tidak terpotong */
-   /* border-radius: 20px;*/ /* Sudut membulat pada live webcam */
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Agar video tidak terpotong */
+    border-radius: 20px; /* Sudut membulat pada live webcam */
   }
   
   /* Kolom Kanan: Preview */
@@ -239,18 +234,12 @@
     }
     .camera-wrapper,
     .preview-wrapper {
-      max-width: 100%;
-  max-height: 100%;
-    }
-
-/*.camera-wrapper,
-    .preview-wrapper {
       flex: none;
       width: 100%;
       height: auto;
       border-left: none;
       border-bottom: 1px solid #ccc;
-    }*/
+    }
     .preview-wrapper {
       border-top: none;
       padding: 10px;
@@ -292,14 +281,6 @@
     .camera-selector-container {
       display: none; /* Hilangkan dropdown kamera */
     }
-.camera-wrapper {
-    height: 60vh;
-  }
-
-  .camera-view {
-    width: 100%;
-    height: 100%;
-  }
  .icon-bar {
     flex-wrap: wrap;
     justify-content: center;
