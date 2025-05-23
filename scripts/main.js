@@ -103,24 +103,47 @@ timerBtn.addEventListener('click', () => {
 function capturePhoto() {
   if (capturedImages.length >= maxPhotos) return;
 
+  const targetRatio = 4 / 3;
+  const targetWidth = 800;
+  const targetHeight = 600;
+
+  let videoWidth = video.videoWidth;
+  let videoHeight = video.videoHeight;
+  let videoRatio = videoWidth / videoHeight;
+
+  let sx, sy, sWidth, sHeight;
+
+  if (videoRatio > targetRatio) {
+    // Video terlalu lebar => potong sisi kiri-kanan
+    sHeight = videoHeight;
+    sWidth = videoHeight * targetRatio;
+    sx = (videoWidth - sWidth) / 2;
+    sy = 0;
+  } else {
+    // Video terlalu tinggi => potong atas-bawah
+    sWidth = videoWidth;
+    sHeight = videoWidth / targetRatio;
+    sx = 0;
+    sy = (videoHeight - sHeight) / 2;
+  }
+
   let canvas = document.createElement('canvas');
-  const fixedWidth = 1280;
-const fixedHeight = 720;
-canvas.width = fixedWidth;
-canvas.height = fixedHeight;
+  canvas.width = targetWidth;
+  canvas.height = targetHeight;
   let ctx = canvas.getContext('2d');
 
-  // Terapkan filter ke context
+  // Terapkan filter
   ctx.filter = buildFilterString();
 
-  // Jika mirror flip aktif, kita balik canvas
+  // Flip mirror jika aktif
   if (isMirrorFlipped) {
     ctx.translate(canvas.width, 0);
     ctx.scale(-1, 1);
   }
 
-  // Gambar frame video ke canvas
-  ctx.drawImage(video, 0, 0, fixedWidth, fixedHeight);
+  // Gambar bagian tengah sesuai rasio ke canvas target
+  ctx.drawImage(video, sx, sy, sWidth, sHeight, 0, 0, targetWidth, targetHeight);
+
 
   // Buat <img> dari canvas
   let img = document.createElement('img');
