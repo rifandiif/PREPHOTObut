@@ -104,8 +104,10 @@ function capturePhoto() {
   if (capturedImages.length >= maxPhotos) return;
 
   let canvas = document.createElement('canvas');
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
+  const fixedWidth = 1280;
+const fixedHeight = 720;
+canvas.width = fixedWidth;
+canvas.height = fixedHeight;
   let ctx = canvas.getContext('2d');
 
   // Terapkan filter ke context
@@ -118,7 +120,7 @@ function capturePhoto() {
   }
 
   // Gambar frame video ke canvas
-  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  ctx.drawImage(video, 0, 0, fixedWidth, fixedHeight);
 
   // Buat <img> dari canvas
   let img = document.createElement('img');
