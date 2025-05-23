@@ -249,6 +249,9 @@ aspect-ratio: 4 / 3; /* atau 16 / 9 */
     .preview-images img {
       width: 120px; /* perkecil thumbnail di mobile */
     }
+.camera-view video {
+    aspect-ratio: 4 / 3; /* Landscape */
+  }
   .camera-view {
     aspect-ratio: 4 / 3; /* Landscape */
     overflow: hidden;
