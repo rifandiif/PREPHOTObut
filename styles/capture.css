@@ -57,24 +57,24 @@
   }
   
   .camera-view {
-     width: 80%;
-  max-width: 800px;
-    background: #000;
-aspect-ratio: 4 / 3; /* atau 16 / 9 */
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* Agar border-radius video terlihat */
-    border-radius: 20px;
-  }
-  
-  .camera-view video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Agar video tidak terpotong */
-    border-radius: 20px; /* Sudut membulat pada live webcam */
-  }
+  width: 100%;
+  max-width: 800px;           /* Target width */
+  aspect-ratio: 4 / 3;        /* Landscape aspect ratio */
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.camera-view video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* Atau 'contain' sesuai keinginan */
+  border-radius: 20px;
+}
+
   
   /* Kolom Kanan: Preview */
   .preview-wrapper {
