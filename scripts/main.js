@@ -41,7 +41,8 @@ let filterValues = {
   contrast: 100,
   sharpness: 100,
   brightness: 100,
-  grain: 0
+  grain: 0,
+  glitch: 0 // nilai dari 0–100
 };
 
 // ========================
@@ -184,7 +185,7 @@ function startTimerCapture() {
 // FUNGSI: Build String CSS Filter
 // ========================
 function buildFilterString() {
-  let { grayscale, blur, retro, vintage, contrast, sharpness, brightness, grain } = filterValues;
+  let { grayscale, blur, retro, vintage, contrast, sharpness, brightness, grain, glitch } = filterValues;
   let flt = [];
 
   if (grayscale > 0) flt.push(`grayscale(${grayscale}%)`);
@@ -201,7 +202,11 @@ function buildFilterString() {
     let ds = Math.floor(grain * 0.05);
     flt.push(`drop-shadow(0 0 ${ds}px rgba(0,0,0,0.5))`);
   }
-
+if (filterValues.glitch > 0) {
+  const amount = filterValues.glitch;
+  flt.push(`drop-shadow(-${amount / 5}px 0 red)`);
+  flt.push(`drop-shadow(${amount / 5}px 0 blue)`);
+}
   return flt.join(' ');
 }
 
@@ -254,6 +259,7 @@ function getFilterLabel(ft) {
     case 'sharpness': return "Sharpness";
     case 'brightness': return "Brightness";
     case 'grain': return "Grain";
+    case 'glitch': return "Glitch Intensity";
     default: return "Filter";
   }
 }
