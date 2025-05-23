@@ -2,55 +2,125 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sesi Foto</title>
-    <link rel="stylesheet" href="../styles/main.css">
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        #photo-grid {
-            display: grid;
-            gap: 10px;
-            margin-top: 20px;
-            justify-content: center;
-        }
-        .photo-slot {
-            width: 100px;
-            height: 100px;
-            background-color: #222;
-            border: 2px dashed white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Arapey:ital@0;1&family=Arya:wght@400;700&family=Bree+Serif&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Monomakh&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/styles/capture.css">
+    <title>PHOTOBOOTH</title>
 </head>
 <body>
-    <h1>Sesi Foto</h1>
-    <p id="template-info"></p>
-    <div id="photo-grid"></div>
+    <!-- Top Bar -->
+  <div class="topbar">
+    <div class="title">PHOTOBOOTH | Beta Version</div>
+    <div class="camera-selector-container">
+      <!-- Kita tetap sediakan select jika suatu saat mau ganti device, 
+           tapi untuk "flip mirror" akan terpisah di icon -->
+      <select id="cameraSelect"></select>
+      <span class="arrow-down">▼</span>
+    </div>
+  </div>
 
-    <script>
-        const template = localStorage.getItem('selectedTemplate') || '1x3';
-        const [cols, rows] = template.split('x').map(Number);
-        const totalPhotos = cols * rows;
+  <!-- Main Container -->
+  <div class="main-container">
+    <!-- Kolom Kiri: Live Kamera -->
+    <div class="camera-wrapper">
+      <div class="camera-view">
+        <video id="video" autoplay playsinline></video>
+      </div>
+    </div>
 
-        document.getElementById('template-info').textContent = `Template: ${template} (${totalPhotos} foto)`;
+    <!-- Kolom Kanan: Preview Foto -->
+    <div class="preview-wrapper">
+      <div class="preview-header">
+        <span class="photo-count" id="photoCount">0/4</span>
+      </div>
+      <div class="preview-images" id="previewContainer">
+        <!-- Foto capture akan muncul di sini -->
+      </div>
+    </div>
+  </div>
 
-        const grid = document.getElementById('photo-grid');
-        grid.style.gridTemplateColumns = `repeat(${cols}, 100px)`;
+  <!-- Bottom Bar -->
+  <div class="bottom-bar">
+    <!-- Tombol capture (akan berubah jadi "Next" jika sudah max foto) -->
+    <button class="btn capture" id="captureBtn">Capture</button>
 
-        for (let i = 1; i <= totalPhotos; i++) {
-            const slot = document.createElement('div');
-            slot.className = 'photo-slot';
-            slot.textContent = i;
-            grid.appendChild(slot);
-        }
-    </script>
+    <!-- Control panel (ikon) -->
+    <div class="icon-bar">
+      <!-- Flip Mirror -->
+      <button class="icon flipMirror" id="flipMirrorBtn" title="Flip Mirror">
+        <i class="fas fa-exchange-alt"></i>
+      </button>
+
+      <!-- Timer -->
+      <button class="icon timer" id="timerBtn" title="Timer">
+        <i class="fas fa-clock"></i>
+      </button>
+
+      <!-- Grayscale -->
+      <button class="icon filter" data-filter="grayscale" title="Grayscale">
+        <i class="fas fa-adjust"></i>
+      </button>
+
+      <!-- Soft Blur -->
+      <button class="icon filter" data-filter="blur" title="Soft Blur">
+        <i class="fas fa-water"></i>
+      </button>
+
+      <!-- Retro -->
+      <button class="icon filter" data-filter="retro" title="Retro">
+        <i class="fas fa-history"></i>
+      </button>
+
+      <!-- Vintage -->
+      <button class="icon filter" data-filter="vintage" title="Vintage">
+        <i class="fas fa-camera-retro"></i>
+      </button>
+
+      <!-- Contrast -->
+      <button class="icon filter" data-filter="contrast" title="Contrast">
+        <i class="fas fa-adjust"></i>
+      </button>
+
+      <!-- Sharpness -->
+      <button class="icon filter" data-filter="sharpness" title="Sharpness">
+        <i class="fas fa-sun"></i>
+      </button>
+
+      <!-- Brightness -->
+      <button class="icon filter" data-filter="brightness" title="Brightness">
+        <i class="fas fa-sun"></i>
+      </button>
+
+      <!-- Grain -->
+      <button class="icon filter" data-filter="grain" title="Grain">
+        <i class="fas fa-grip-lines"></i>
+      </button>        
+    </div>
+  </div>
+
+  <!-- Popup Filter: muncul kecil di atas icon -->
+  <div id="filterPopup" class="filter-popup hidden">
+    <div class="filter-popup-content" id="filterPopupContent">
+      <label id="filterLabel" for="filterRange">Filter</label>
+      <input type="range" id="filterRange" min="0" max="100" value="50">
+      <div class="filter-popup-footer">
+        <span id="filterValueDisplay">50</span>
+        <button id="closeFilterPopup" class="btn">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup Konfirmasi Edit/Retake (opsional) -->
+  <div id="editConfirmPopup" class="popup hidden">
+    <p>Mau lanjut edit atau retake?</p>
+    <button id="proceedEditBtn" class="btn primary">Lanjut Edit</button>
+    <button id="retakeBtn" class="btn">Retake</button>
+  </div>
+
+    <script src="/scripts/main.js"></script>
 </body>
 </html>
