@@ -131,8 +131,7 @@ function capturePhoto() {
   canvas.width = targetWidth;
   canvas.height = targetHeight;
   let ctx = canvas.getContext('2d');
-const canvasRatio = canvas.width / canvas.height;
-  video.style.aspectRatio = `${canvasRatio}`;
+
   // Terapkan filter
   ctx.filter = buildFilterString();
 
